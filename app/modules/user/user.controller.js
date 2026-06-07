@@ -1,6 +1,6 @@
 export const userCreate = (req, res) => {
     const { name, email, password } = req.body;
-    res.render('user/created', { name });
+    res.json({ message: 'User created', name, email });
 };
 
 export const userGetById = (req, res) => {

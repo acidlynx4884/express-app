@@ -1,24 +1,20 @@
 import express from 'express';
-import path from 'path';
-import { fileURLToPath } from 'url';
 import router from './routes/index.js';
 import { notFound } from './middlewares/notFound.js';
 import { errorHandler } from './middlewares/errorHandler.js';
+import { connectDB } from './db.js';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
-const port = 3000;
+const port = process.env.PORT ?? 3000;
 
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
-
-app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.json());
 
 app.use(router);
 
 app.use(notFound);
 app.use(errorHandler);
+
+await connectDB();
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
