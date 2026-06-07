@@ -6,10 +6,353 @@
 body {
     min-height: 100vh;
     display: flex;
-    padding: 2rem;
+    flex-direction: column;
     background: #121212;
     color: #f5f5f5;
     font-family: system-ui, -apple-system, sans-serif;
-    font-size: 1.125rem;
-    line-height: 1.5;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* ── Header / Nav ──────────────────────────────── */
+
+.site-header {
+    border-bottom: 1px solid #222;
+    background: #0d0d0d;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.nav-brand {
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: -0.02em;
+    flex-shrink: 0;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+    flex: 1;
+}
+
+.nav-link {
+    color: #999;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.15s;
+}
+
+.nav-link:hover {
+    color: #fff;
+}
+
+.nav-auth {
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+}
+
+/* ── Main content ──────────────────────────────── */
+
+.main {
+    flex: 1;
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+}
+
+/* ── Buttons ───────────────────────────────────── */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.45rem 1rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+    white-space: nowrap;
+}
+
+.btn-primary {
+    background: #4f6ef7;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: #3d5fe6;
+}
+
+.btn-ghost {
+    background: transparent;
+    color: #999;
+    border: 1px solid #2e2e2e;
+}
+
+.btn-ghost:hover {
+    background: #1c1c1c;
+    color: #fff;
+    border-color: #444;
+}
+
+.btn-lg {
+    padding: 0.65rem 1.4rem;
+    font-size: 0.95rem;
+}
+
+/* ── Hero ──────────────────────────────────────── */
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 5rem 1rem 3rem;
+    gap: 1.25rem;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+}
+
+.hero-sub {
+    font-size: 1.05rem;
+    color: #777;
+    max-width: 500px;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 0.5rem;
+}
+
+/* ── Feature cards ─────────────────────────────── */
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+    margin-top: 3rem;
+}
+
+.card {
+    background: #181818;
+    border: 1px solid #252525;
+    border-radius: 10px;
+    padding: 1.5rem;
+}
+
+.card-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.card-body {
+    color: #777;
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+/* ── About / generic pages ─────────────────────── */
+
+.page-header {
+    margin-bottom: 2.5rem;
+}
+
+.page-title {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.4rem;
+}
+
+.page-sub {
+    color: #777;
+    font-size: 0.95rem;
+}
+
+.section {
+    margin-bottom: 2.5rem;
+}
+
+.section-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #555;
+    margin-bottom: 0.75rem;
+}
+
+.section p {
+    color: #aaa;
+    font-size: 0.95rem;
+    max-width: 640px;
+}
+
+.stack-list {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.badge {
+    background: #1c1c1c;
+    border: 1px solid #2e2e2e;
+    border-radius: 20px;
+    padding: 0.3rem 0.8rem;
+    font-size: 0.8rem;
+    color: #bbb;
+}
+
+/* ── Auth forms ────────────────────────────────── */
+
+.auth-wrapper {
+    display: flex;
+    justify-content: center;
+    padding-top: 3.5rem;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 400px;
+    background: #181818;
+    border: 1px solid #252525;
+    border-radius: 12px;
+    padding: 2.25rem 2.5rem;
+}
+
+.auth-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.3rem;
+}
+
+.auth-sub {
+    color: #777;
+    font-size: 0.875rem;
+    margin-bottom: 1.75rem;
+}
+
+.form-group {
+    margin-bottom: 1.1rem;
+}
+
+.form-label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-bottom: 0.35rem;
+    color: #bbb;
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.55rem 0.85rem;
+    background: #0f0f0f;
+    border: 1px solid #2e2e2e;
+    border-radius: 6px;
+    color: #f0f0f0;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.15s;
+}
+
+.form-input::placeholder {
+    color: #444;
+}
+
+.form-input:focus {
+    border-color: #4f6ef7;
+}
+
+.form-submit {
+    width: 100%;
+    margin-top: 0.5rem;
+    padding: 0.65rem;
+}
+
+.auth-footer {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.825rem;
+    color: #666;
+}
+
+.auth-footer a {
+    color: #4f6ef7;
+    text-decoration: none;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}
+
+/* ── Footer ────────────────────────────────────── */
+
+.site-footer {
+    border-top: 1px solid #1e1e1e;
+    background: #0d0d0d;
+    padding: 2rem;
+}
+
+.footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    text-align: center;
+}
+
+.footer-logo {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+.footer-tagline {
+    color: #555;
+    font-size: 0.775rem;
+    margin-top: 0.15rem;
+}
+
+.footer-meta {
+    display: flex;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    color: #444;
+}
+
+.footer-copy {
+    font-size: 0.75rem;
+    color: #383838;
 }
