@@ -20,13 +20,13 @@ export const authLogin = async (req: Request, res: Response) => {
     const user = await User.findOne({ email }).select('+password');
 
     if (!user) {
-        return res.status(401).json({ error: 'Invalid credentials' });
+        return res.status(401).json({ error: 'User with such email doesn\'t exist' });
     }
 
-    const isMatch = await bcrypt.compare(password, user.password);
+    const isPasswordMatch = await bcrypt.compare(password, user.password);
 
-    if (!isMatch) {
-        return res.status(401).json({ error: 'Invalid credentials' });
+    if (!isPasswordMatch) {
+        return res.status(401).json({ error: 'Invalid password' });
     }
 
     res.cookie('session', user._id.toString(), cookieOptions);
@@ -52,25 +52,22 @@ export const authSignup = async (req: Request, res: Response) => {
     const { name, email, password } = req.body;
 
     if (!name || !email || !password) {
-        return res.status(400).json({ error: 'Name, email and password are required' });
+        return res.status(400).json({ error: 'Name, email, password are required' });
     }
 
-    try {
-        const user = await User.create({ name, email, password });
-
-        res.status(201).json({
-            message: 'User signed up',
-            user: {
-                id: user._id,
-                name: user.name,
-                email: user.email,
-            },
-        });
-    } catch (err: unknown) {
-        if (err && typeof err === 'object' && 'code' in err && err.code === 11000) {
-            return res.status(409).json({ error: 'Email already in use' });
-        }
-
-        throw err;
+    const emailTaken = await User.exists({ email });
+    if (emailTaken) {
+        return res.status(409).json({ error: 'Email already in use' });
     }
+
+    const user = await User.create({ name, email, password });
+
+    res.status(201).json({
+        message: 'User signed up',
+        user: {
+            id: user._id,
+            name: user.name,
+            email: user.email,
+        },
+    });
 };
