@@ -1,15 +1,13 @@
+import type { Request, Response } from 'express';
 import { User } from '../../models/User.js';
 
 const DEFAULT_PAGE = 1;
 const DEFAULT_LIMIT = 10;
 const MAX_LIMIT = 100;
 
-export const userGetAll = async (req, res) => {
+export const userGetAll = async (req: Request, res: Response) => {
     const page = Math.max(DEFAULT_PAGE, Number(req.query.page) || DEFAULT_PAGE);
-    const limit = Math.min(
-        MAX_LIMIT,
-        Math.max(1, Number(req.query.limit) || DEFAULT_LIMIT)
-    );
+    const limit = Math.min(MAX_LIMIT, Math.max(1, Number(req.query.limit) || DEFAULT_LIMIT));
     const skip = (page - 1) * limit;
 
     const [users, total] = await Promise.all([
@@ -28,18 +26,18 @@ export const userGetAll = async (req, res) => {
     });
 };
 
-export const userCreate = async (req, res) => {
+export const userCreate = async (req: Request, res: Response) => {
     const { name, email, password } = req.body;
     const user = await User.create({ name, email, password });
     res.status(201).json(user);
 };
 
-export const userGetById = (req, res) => {
+export const userGetById = (req: Request, res: Response) => {
     const { id } = req.params;
     res.json({ message: 'User found', id });
 };
 
-export const userDelete = (req, res) => {
+export const userDelete = (req: Request, res: Response) => {
     const { id } = req.params;
     res.json({ message: 'User deleted', id });
 };

@@ -2,26 +2,35 @@
   "name": "express-api",
   "version": "1.0.0",
   "description": "",
-  "main": "app/index.js",
+  "main": "dist/app/index.js",
   "scripts": {
-    "dev": "nodemon --env-file=.env app/index.js"
+    "dev": "nodemon --env-file=.env --exec tsx app/index.ts",
+    "build": "tsc",
+    "start": "node --env-file=.env dist/app/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "module",
   "imports": {
-    "#public/*": "./public/*.js",
-    "#modules/*": "./app/modules/*.js",
-    "#middlewares/*": "./app/middlewares/*.js"
+    "#public/*": "./public/*.css",
+    "#modules/*": "./app/modules/*.ts",
+    "#middlewares/*": "./app/middlewares/*.ts"
   },
   "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cookie-parser": "^1.4.7",
     "ejs": "^6.0.1",
     "express": "^5.2.1",
     "mongoose": "^9.6.3"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/cookie-parser": "^1.4.9",
     "@types/express": "^5.0.6",
-    "nodemon": "^3.1.14"
+    "@types/node": "^24.3.0",
+    "nodemon": "^3.1.14",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2"
   }
 }
